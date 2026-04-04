@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+
+# Storage data files
+storage/*.json
+
+# Security config (user-specific paths)
+security.json
+
+# Credential files
+gcp-oauth.keys.json
+*.keys.json
+
+# Debug output
+debug/*.md
+debug/*.json
+
+
+# Workspace data (user-specific logs and knowledge)
+workspace/discord/
+workspace/slack/
+workspace/knowledge/**/*.md
+workspace/system/owner.md
+workspace/system/users/*.md
+workspace/system/rules.md
+workspace/system/identity.md
+workspace/system/structure.md
+workspace/system/channels.md
+workspace/system/users.md
+workspace/issues.md
+workspace/want-to-know.md
+
+# Keep workspace directory structure
+!**/.gitkeep

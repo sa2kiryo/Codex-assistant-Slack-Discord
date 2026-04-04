@@ -1,0 +1,28 @@
+export function getCoreAllowedTools(): string[] {
+  return [
+    "mcp__codex__*",
+    "mcp__notion__*",
+    "mcp__agent-tools__read_user_profile",
+    "mcp__agent-tools__write_user_profile",
+    "mcp__agent-tools__safe_glob",
+    "mcp__agent-tools__safe_grep",
+    "mcp__agent-tools__safe_read",
+    "mcp__agent-tools__safe_write",
+    "mcp__agent-tools__safe_edit",
+    "mcp__agent-tools__add_once_schedule",
+    "mcp__agent-tools__add_recurring_schedule",
+    "mcp__agent-tools__list_schedules",
+    "mcp__agent-tools__remove_schedule",
+    "Task",
+    "TaskOutput",
+    "Bash",
+    "ExitPlanMode",
+    "NotebookEdit",
+    "WebFetch",
+    "WebSearch",
+    "KillShell",
+    "AskUserQuestion",
+    "Skill",
+    "EnterPlanMode",
+  ]
+}
