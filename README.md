@@ -1,9 +1,9 @@
-# codex-assistant-Slack-Discord
+# Codex-assistant-Slack-Discord
 
 **共感型AIキャラクター コミュニケーションシステム**
 
 Codex SDK を基盤とした、人格を持つ自律型AIコミュニケーションBot。
-Slack / Discord 上で人間と会話し、相手を覚え、関係性を築き、感情に寄り添いながらサポートする。
+Slack / Discord / Cli 上で人間と会話し、相手を覚え、関係性を築き、感情に寄り添いながらサポートする。
 
 > "報告書を生成するマシンではない。たまたまAIである一人の人間。"
 > — prompts/base.md
