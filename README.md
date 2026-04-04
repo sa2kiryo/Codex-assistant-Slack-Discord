@@ -234,33 +234,38 @@ Bot がアクセスできるファイルパスを制限する:
 ```
 lib/
 ├── apps/
-│   ├── discord/         # Discord.js integration (WebSocket Gateway)
-│   └── slack/           # Slack Bolt integration (Socket Mode)
-├── cli/                 # CLI interface
-├── core/                # Config, prompt-generator, MCP server, API clients
-├── hooks/               # Tool execution hooks (safety, normalization)
-├── prompts/             # System prompt builder
-├── scheduler/           # Schedule functionality
+│   ├── discord/         # Discord.js 連携 (WebSocket Gateway)
+│   └── slack/           # Slack Bolt 連携 (Socket Mode)
+├── cli/                 # CLI インターフェース
+├── core/                # 設定、プロンプト生成、MCP サーバー、API クライアント
+├── hooks/               # ツール実行フック (安全性チェック、正規化)
+├── prompts/             # システムプロンプト構築
+├── scheduler/           # スケジュール機能
 └── tools/
-    ├── safe-tools/      # Sandboxed file operation tools
-    ├── discord-tools/   # Discord communication tools
-    ├── slack-tools/     # Slack communication tools
-    ├── memory-tools/    # User profile read/write
-    └── schedule-tools/  # Schedule management tools
+    ├── safe-tools/      # サンドボックス化されたファイル操作ツール
+    ├── discord-tools/   # Discord 送信ツール
+    ├── slack-tools/     # Slack 送信ツール
+    ├── memory-tools/    # ユーザープロフィール読み書き
+    └── schedule-tools/  # スケジュール管理ツール
 
-prompts/                 # Static prompt files (base, guidelines, mention rules)
+prompts/                 # 静的プロンプトファイル (ベース、ガイドライン、メンションルール)
 workspace/
-├── system/              # Character definition & context (included in system prompt)
-│   ├── identity.md      # Character personality, tone, motivation
-│   ├── rules.md         # Behavioral rules & channel policies
-│   ├── owner.md         # Learned info about the owner
-│   ├── channels.md      # Channel mapping
-│   └── users.md         # Member roster
-├── knowledge/           # Knowledge base (indexed, read on-demand)
-├── discord/             # Discord logs
-│   ├── users/{id}/      # Per-user profile + daily logs
-│   └── channels/{id}/   # Per-channel index + daily logs
-└── slack/               # Slack logs (same structure)
+├── system/              # キャラクター定義とコンテキスト (システムプロンプトに含まれる)
+│   ├── identity.md      # 性格、口調、動機
+│   ├── rules.md         # 行動ルールとチャンネルポリシー
+│   ├── owner.md         # オーナーに関する学習情報
+│   ├── structure.md     # サーバー/ワークスペース構成情報
+│   ├── channels.md      # チャンネルマッピング
+│   ├── users.md         # メンバー一覧
+│   └── users/           # ユーザー別詳細ファイル
+├── knowledge/           # ナレッジベース (インデックス付き、オンデマンド読み込み)
+│   ├── organization/    # 組織に関するナレッジ
+│   ├── process/         # プロセスに関するナレッジ
+│   └── tech/            # 技術に関するナレッジ
+├── discord/             # Discord ログ
+│   ├── users/{id}/      # ユーザー別プロフィール + 日次ログ
+│   └── channels/{id}/   # チャンネル別インデックス + 日次ログ
+└── slack/               # Slack ログ (同構成)
 ```
 
 ---
