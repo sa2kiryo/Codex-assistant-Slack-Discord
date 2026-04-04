@@ -6,7 +6,11 @@
       "Bash(find:*)",
       "Bash(git rm:*)",
       "Bash(git update-ref:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git reflog:*)",
+      "Bash(git gc:*)",
+      "Bash(git remote:*)"
     ]
   }
 }
