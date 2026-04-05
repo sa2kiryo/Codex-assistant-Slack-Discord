@@ -2,18 +2,18 @@ import { execFileSync } from "node:child_process"
 import * as path from "node:path"
 import { tool } from "@/core/sdk-compat"
 import { z } from "zod"
-import { isPathDenied } from "@/tools/safe-tools/utils"
+import { isPathDenied, resolveWithWorkspaceFallback, allowedBasePaths } from "@/tools/safe-tools/utils"
 
 export const safeGrep = tool(
   "safe_grep",
   "Search for patterns in files (sandboxed to allowed paths)",
   {
     pattern: z.string().describe("Search pattern (regex)"),
-    path: z.string().optional().describe("Directory or file to search in"),
+    path: z.string().optional().describe("Directory or file to search in (relative to project root, e.g. 'workspace/'). Defaults to project root."),
     glob: z.string().optional().describe("File pattern filter like *.ts"),
   },
   async (args) => {
-    const searchPath = path.resolve(args.path ?? process.cwd())
+    const searchPath = args.path ? resolveWithWorkspaceFallback(args.path) : path.resolve(allowedBasePaths[1])
 
     if (isPathDenied(searchPath)) {
       return {

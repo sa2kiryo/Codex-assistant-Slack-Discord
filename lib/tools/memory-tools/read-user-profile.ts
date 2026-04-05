@@ -3,7 +3,9 @@ import path from "node:path"
 import { tool } from "@/core/sdk-compat"
 import { safe } from "@/core/utils"
 
-const systemDir = path.join(process.cwd(), "system")
+const projectRoot = path.resolve(import.meta.dirname, "..", "..", "..")
+const workspaceDir = process.env.AGENT_DATA_DIR ?? path.join(projectRoot, "workspace")
+const systemDir = path.join(workspaceDir, "system")
 
 const readFile = safe(fs.readFile)
 

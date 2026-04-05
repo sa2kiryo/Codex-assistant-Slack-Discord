@@ -2,18 +2,18 @@ import * as fs from "node:fs/promises"
 import * as path from "node:path"
 import { tool } from "@/core/sdk-compat"
 import { z } from "zod"
-import { isPathDenied } from "@/tools/safe-tools/utils"
+import { isPathDenied, resolveWithWorkspaceFallback } from "@/tools/safe-tools/utils"
 
 export const safeEdit = tool(
   "safe_edit",
   "Edit a file by replacing text (sandboxed to allowed paths)",
   {
-    file_path: z.string().describe("Path to the file to edit"),
+    file_path: z.string().describe("Path to the file to edit (relative to project root, e.g. 'workspace/system/owner.md')"),
     old_string: z.string().describe("Text to replace"),
     new_string: z.string().describe("Replacement text"),
   },
   async (args) => {
-    const resolved = path.resolve(args.file_path)
+    const resolved = resolveWithWorkspaceFallback(args.file_path)
 
     if (isPathDenied(resolved)) {
       return { content: [{ type: "text", text: `Access denied: ${resolved}` }] }

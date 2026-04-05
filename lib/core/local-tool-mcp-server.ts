@@ -1,5 +1,21 @@
 import { stdin as input, stdout as output } from "node:process"
+import { Buffer } from "node:buffer"
+import * as fs from "node:fs"
+import * as path from "node:path"
 import { z } from "zod"
+
+// Debug log to file (stderr is not visible, so log to a file)
+const logPath = path.join(import.meta.dirname, "..", "..", "debug", "mcp-server.log")
+function debugLog(message: string) {
+  try {
+    const timestamp = new Date().toISOString()
+    fs.appendFileSync(logPath, `[${timestamp}] ${message}\n`, "utf-8")
+  } catch {
+    // Silently ignore log failures
+  }
+}
+
+debugLog(`MCP server started. cwd=${process.cwd()}, dirname=${import.meta.dirname}`)
 import { getCoreTools } from "@/core/get-core-tools"
 import type { LocalTool, ToolResult } from "@/core/sdk-compat"
 
@@ -15,7 +31,7 @@ const tools = getCoreTools()
 const toolMap = new Map<string, LocalTool>(tools.map((tool) => [tool.name, tool]))
 
 function send(message: unknown) {
-  output.write(`${JSON.stringify(message)}\n`)
+  output.write(Buffer.from(`${JSON.stringify(message)}\n`, "utf-8"))
 }
 
 function sendResult(id: JsonRpcId, result: unknown) {
@@ -107,7 +123,10 @@ async function handleRequest(request: JsonRpcRequest) {
         ? (args as Record<string, unknown>)
         : {}
 
-    sendResult(id, toCallResult(await callTool(tool, parsedArgs)))
+    debugLog(`tools/call: ${name} args=${JSON.stringify(parsedArgs)}`)
+    const result = await callTool(tool, parsedArgs)
+    debugLog(`tools/call: ${name} result=${JSON.stringify(result.content?.[0])}`)
+    sendResult(id, toCallResult(result))
     return
   }
 

@@ -2,13 +2,9 @@
 
 ## File Operations
 
-- safe_glob: File search (pattern matching, e.g., **/*.md)
-- safe_grep: Text search (regex supported)
-- safe_read: File reading
-- safe_write: File writing
-- safe_edit: File editing
+Use any available file tool for reading and writing files.
 
-Important: Always use safe_grep / safe_glob instead of grep or find in Bash.
+**Garbled reads (Windows)**: File reads may return garbled Japanese text. When this happens, do not retry. Write the full file content you want. The file on disk is fine — only the read-back is garbled.
 
 ## External Service Integration
 
